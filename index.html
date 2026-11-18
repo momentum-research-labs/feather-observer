@@ -5,38 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="referrer" content="no-referrer" />
     <title>Feather · Simulator observer</title>
-    <script type="module" crossorigin src="./assets/observer-Slge2bYU.js"></script>
+    <script type="module" crossorigin src="./assets/observer-CUmeDOC4.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-P2Xu9kJm.js">
-    <link rel="stylesheet" crossorigin href="./assets/observer-BinRjPr8.css">
+    <link rel="stylesheet" crossorigin href="./assets/observer-DmviWDy2.css">
   </head>
   <body>
     <main>
       <h1>Feather simulator</h1>
-      <p id="status" role="status">Waiting for a room invitation</p>
-      <form id="pair" hidden>
-        <label for="code">Headset code</label>
-        <input
-          id="code"
-          placeholder="XXXX-XXXX"
-          autocapitalize="characters"
-          autocomplete="off"
-          spellcheck="false"
-          required
-        />
-        <button>Join room</button>
-      </form>
-      <canvas
-        id="panel"
-        width="1200"
-        height="580"
-        aria-label="Simulated head camera and measured arm joint angles"
-      ></canvas>
-      <video muted playsinline autoplay hidden></video>
-      <nav>
-        <button id="join">Join room</button
-        ><button id="vr" disabled>Enter VR</button>
-        <button id="change-code" hidden>Change headset code</button>
-      </nav>
+      <div role="tablist" aria-label="Simulator">
+        <button
+          id="view-tab"
+          role="tab"
+          aria-controls="view-pane"
+          aria-selected="true"
+        >
+          Viewer
+        </button>
+        <button
+          id="sync-tab"
+          role="tab"
+          aria-controls="sync-pane"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          Sync to Quest
+        </button>
+      </div>
+      <section id="view-pane" role="tabpanel" aria-labelledby="view-tab">
+        <p id="status" role="status">Waiting for a room invitation</p>
+        <form id="pair" hidden>
+          <label for="code">Headset code</label>
+          <input
+            id="code"
+            placeholder="XXXX-XXXX"
+            autocapitalize="characters"
+            autocomplete="off"
+            spellcheck="false"
+            required
+          />
+          <button>Join room</button>
+        </form>
+        <canvas
+          id="panel"
+          width="1200"
+          height="580"
+          aria-label="Simulated head camera and measured arm joint angles"
+        ></canvas>
+        <video muted playsinline autoplay hidden></video>
+        <nav>
+          <button id="join">Join room</button
+          ><button id="vr" disabled>Enter VR</button>
+          <button id="change-code" hidden>Change headset code</button>
+        </nav>
+      </section>
+      <section id="sync-pane" role="tabpanel" aria-labelledby="sync-tab" hidden>
+        <p>
+          Choose your headset in Meta’s device picker to open the simulator in
+          Quest Browser.
+        </p>
+        <p id="sync-code-row" hidden>
+          Headset code <strong id="sync-code"></strong>
+        </p>
+        <label id="sync-share-row" hidden
+          ><input type="checkbox" id="sync-share" /> Include this headset code
+          in the link sent to Meta</label
+        >
+        <p>
+          <a id="send-quest" target="_blank" rel="noopener noreferrer"
+            >Open Meta headset picker ↗</a
+          >
+        </p>
+        <p>
+          Or open <a id="manual-quest"></a> in Quest Browser and enter your
+          headset code.
+        </p>
+      </section>
     </main>
   </body>
 </html>
